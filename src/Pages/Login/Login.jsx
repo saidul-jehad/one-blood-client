@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -7,30 +6,29 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
 
-    // const [disable, setDisable] = useState(true)
-    // const { login } = useAuth()
-    // const navigate = useNavigate()
-    // const location = useLocation()
-    // const from = location?.state?.from?.pathname || '/';
+    const { login } = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/';
 
 
 
-    // const handleLogin = event => {
-    //     event.preventDefault()
-    //     const form = event.target
-    //     const email = form.email.value;
-    //     const password = form.password.value;
+    const handleLogin = event => {
+        event.preventDefault()
+        const form = event.target
+        const email = form.email.value;
+        const password = form.password.value;
 
 
-    //     // login user
-    //     login(email, password)
-    //         .then(() => {
-    //             // console.log(result.user);
-    //             toast.success("Login Success")
-    //             navigate(from, { replace: true })
-    //         })
-    //         .catch(err => console.log(err))
-    // }
+        // login user
+        login(email, password)
+            .then(() => {
+                // console.log(result.user);
+                toast.success("Login Success")
+                navigate(from, { replace: true })
+            })
+            .catch(err => console.log(err))
+    }
 
 
     return (
@@ -45,7 +43,7 @@ const Login = () => {
 
                     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <h1 className="text-3xl font-bold text-center mt-6">Login now!</h1>
-                        <form className="card-body" >
+                        <form className="card-body" onSubmit={handleLogin} >
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -62,16 +60,7 @@ const Login = () => {
                                 </label>
                             </div>
 
-                            {/* <div className="form-control">
-                                <label className="label">
-                                    <LoadCanvasTemplate />
-                                </label>
-
-                                <input onBlur={handleValidateCaptcha} type="text" placeholder="type the captcha above" className="input input-bordered" required name="captcha" />
-
-                            </div> */}
                             <div className="form-control mt-2">
-                                {/* DONE: disabled={disable} */}
                                 <input className="btn btn-outline text-white bg-[#D1A054]" type="submit" value="Login" />
                             </div>
 
