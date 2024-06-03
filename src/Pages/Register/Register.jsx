@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form"
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
-import { useEffect, useState } from 'react';
-import { districtsAndUpazilas } from './DistrictAndUpazilas'
+import { useState } from 'react';
+import { districtsAndUpazilas } from '../../../public/DistrictAndUpazilas'
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -18,7 +18,6 @@ const Register = () => {
     const { createUser, updateUserProfile, } = useAuth()
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
-    const [data, setData] = useState()
 
     const {
         register,
@@ -39,71 +38,55 @@ const Register = () => {
             console.log("Passwords do not match");
             return
         } else {
+            setPasswordError("");
 
             // upload image  in imgbb
-            // const imageFile = { image: data.avatar[0] }
-            // const res = await axiosPublic.post(image_hosting_api, imageFile, {
-            //     headers: {
-            //         'content-type': 'multipart/form-data'
-            //     }
-            // });
-            // console.log(res.data)
+            const imageFile = { image: data.avatar[0] }
+            const imageRes = await axiosPublic.post(image_hosting_api, imageFile, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            });
 
+            console.log(imageRes.data);
+            if (imageRes.data.success) {
 
+                // create user
+                createUser(data.email, data.password)
+                    .then(() => {
+                        updateUserProfile(data.name, imageRes.data.display_url)
+                            .then(() => {
+                                // create user entry in the database 
+                                const userInfo = {
+                                    email: data.email,
+                                    name: data.name,
+                                    avatar: imageRes.data.data.display_url,
+                                    bloodGroup: data.bloodGroup,
+                                    district: data.district,
+                                    upazila: data.upazila,
+                                    password: data.password,
+                                    role: "donor",
+                                    status: "active"
+                                }
 
-
-            // create user
-            createUser(data.email, data.password)
-                .then(() => {
-                    updateUserProfile(data.name, data.name)
-                        .then((res) => {
-                            // create user entry in the database 
-                            const userInfo = {
-                                name: data.name,
-                                email: data.email
-                            }
-
-                            console.log(res);
-                            // axiosPublic.post('/users', userInfo)
-                            //     .then(res => {
-                            //         if (res.data.insertedId) {
-                            //             console.log("database inserted");
-                            //             reset()
-                            //             toast.success("Sign Up Success")
-                            //             navigate("/")
-                            //         }
-                            //     })
-                        })
-                        .catch(err => console.log(err))
-                })
-                .catch(err => console.log(err))
-
-
-
-
-            setPasswordError("");
-            const user = {
-                email: data.email,
-                password: data.password,
-                name: data.name,
-                avatar: data.avatar,
-                bloodGroup: data.bloodGroup,
-                district: data.district,
-                upazila: data.upazila,
+                                // console.log(res);
+                                axiosPublic.post('/users', userInfo)
+                                    .then(res => {
+                                        console.log(res.data);
+                                        if (res.data?.insertedId) {
+                                            console.log("database inserted");
+                                            reset()
+                                            toast.success("Sign Up Success")
+                                            navigate("/")
+                                        }
+                                    })
+                            })
+                            .catch(err => console.log(err))
+                    })
+                    .catch(err => console.log(err))
 
             }
-
-            console.log(user);
         }
-
-
-
-
-
-
-
-
-
     }
 
 
@@ -111,11 +94,11 @@ const Register = () => {
 
     return (
         <>
-            <Helmet><title>Bistro Boss || Sign Up</title></Helmet>
+            <Helmet><title>OneBlood || Sign Up</title></Helmet>
             <div className="hero min-h-screen bg-base-200 pt-20">
-                <div className="hero-content flex-col lg:flex-row md:w-3/4">
+                <div className="hero-content flex-col lg:flex-row md:w-3/4 ">
 
-                    <div className="card shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
+                    <div className="card shrink-0 w-full max-w-sm md:max-w-xl shadow-2xl bg-base-100">
                         <h1 className="text-3xl font-bold text-center mt-6">Sign Up now!</h1>
 
                         <form className="card-body" onSubmit={handleSubmit(onSubmit)} >

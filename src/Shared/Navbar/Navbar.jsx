@@ -1,10 +1,9 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
-import auth from '../../firebase/firebase.config';
 import useAuth from '../../Hooks/useAuth';
 
 const Navbar = () => {
-    console.log(auth);
+
     const { user, logout } = useAuth()
     // const [isAdmin] = useAdmin()
     const navigate = useNavigate()
@@ -25,6 +24,8 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/donation-requests'>Donation Requests</NavLink></li>
         <li><NavLink to='/blog'>Blog</NavLink></li>
+        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+
         {/* {
             user && isAdmin && <li><NavLink to='/dashboard/admin-home'>Dashboard</NavLink></li>
         }

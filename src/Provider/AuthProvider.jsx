@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword,  signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 
@@ -39,6 +39,8 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             console.log("current user", currentUser);
+
+            setLoading(false)
             setUser(currentUser)
             // if (currentUser) {
             //     setLoading(false)
@@ -56,7 +58,6 @@ const AuthProvider = ({ children }) => {
             //     localStorage.removeItem('access-token')
             // }
 
-            // setLoading(false)
         })
 
         return () => {
