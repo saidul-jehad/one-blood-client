@@ -10,6 +10,9 @@ import Dashboard from "../Layout/Dashboard";
 import Profile from "../Pages/dashboard/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
 import CreateDonationRequest from "../Pages/dashboard/CreateDonationRequest/CreateDonationRequest";
+import AllDonationRequest from "../Pages/dashboard/AllDonationRequest/AllDonationRequest";
+import DonationRequest from "../Pages/DonationRequest/DonationRequest";
+import DonationDetails from "../Pages/DonationDetails/DonationDetails";
 
 
 
@@ -30,6 +33,15 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>
             },
+            {
+                path: '/donation-requests',
+                element: <DonationRequest></DonationRequest>
+            },
+            {
+                path: '/donation-details/:id',
+                element: <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/donation-request/${params.id}`)
+            },
 
         ]
     },
@@ -40,7 +52,11 @@ const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
 
-
+            // only admin]
+            {
+                path: 'all-blood-donation-request',
+                element: <PrivateRoute><AllDonationRequest></AllDonationRequest></PrivateRoute>
+            },
 
             // common
             {

@@ -1,5 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaCalendar, FaEnvelope, FaHome, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaCalendar, FaEnvelope, FaHome, FaList, FaListAlt, FaUsers, FaUtensils } from "react-icons/fa";
 import { FaCableCar } from "react-icons/fa6";
 import { MdRequestPage } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router-dom";
@@ -8,7 +8,7 @@ const Dashboard = () => {
 
     // TODO : get admin value from the database 
     // const [isAdmin] = useAdmin()
-    const isAdmin = false
+    const isAdmin = true
     // console.log(isAdmin);
     const dashboardLinks = <>
         {
@@ -32,6 +32,13 @@ const Dashboard = () => {
                     <NavLink to={"/dashboard/all-users"}>
                         <FaUsers></FaUsers>
                         All Users
+                    </NavLink>
+                </li>
+
+                <li>
+                    <NavLink to={"/dashboard/all-blood-donation-request"}>
+                        <FaListAlt></FaListAlt>
+                        All Blood Donation Request
                     </NavLink>
                 </li>
             </> : <>
