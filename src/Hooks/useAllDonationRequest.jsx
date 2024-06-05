@@ -5,7 +5,8 @@ const useAllDonationRequest = () => {
     const axiosSecure = useAxiosSecure()
 
     const {
-        data: all_donation_request = []
+        data: all_donation_request = [],
+        refetch
     } = useQuery({
         queryKey: ["all-donation-request"],
         queryFn: async () => {
@@ -14,7 +15,7 @@ const useAllDonationRequest = () => {
         }
     })
 
-    return [all_donation_request]
+    return [all_donation_request, refetch]
 };
 
 export default useAllDonationRequest;
