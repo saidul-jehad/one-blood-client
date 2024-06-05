@@ -3,6 +3,7 @@ import useAllDonationRequest from '../../../Hooks/useAllDonationRequest';
 import { MdDeleteForever } from 'react-icons/md';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const AllDonationRequest = () => {
     const [all_donation_request, refetch] = useAllDonationRequest()
@@ -87,7 +88,7 @@ const AllDonationRequest = () => {
                                     <FaEdit className='text-2xl bg-amber-600 hover:bg-amber-500 text-white p-1 rounded-md'></FaEdit>
                                 </td> */}
                                 <td className='flex gap-3'>
-                                    <FaEdit className='text-2xl bg-amber-600 hover:bg-amber-500 text-white p-1 rounded-md'></FaEdit>
+                                    <Link to={`/dashboard/update-donation-request/${request._id}`}><FaEdit className='text-2xl bg-amber-600 hover:bg-amber-500 text-white p-1 rounded-md'></FaEdit></Link>
 
                                     <button onClick={() => handleDelete(request._id)}><MdDeleteForever className='text-2xl bg-red-600 hover:bg-red-500 text-white p-1 rounded-md'></MdDeleteForever></button>
                                 </td>

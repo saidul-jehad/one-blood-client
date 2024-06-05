@@ -27,10 +27,10 @@ const Register = () => {
     } = useForm()
 
 
-    // dddddd
+    // 
     const districts = Object.keys(districtsAndUpazilas);
     const upazilas = selectedDistrict ? districtsAndUpazilas[selectedDistrict] : [];
-    /********/
+    // 
 
     const onSubmit = async (data) => {
         if (data.password !== data.confirm) {

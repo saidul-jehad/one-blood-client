@@ -13,6 +13,7 @@ import CreateDonationRequest from "../Pages/dashboard/CreateDonationRequest/Crea
 import AllDonationRequest from "../Pages/dashboard/AllDonationRequest/AllDonationRequest";
 import DonationRequest from "../Pages/DonationRequest/DonationRequest";
 import DonationDetails from "../Pages/DonationDetails/DonationDetails";
+import UpdateDonationRequest from "../Pages/dashboard/UpdateDonationRequest/UpdateDonationRequest";
 
 
 
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
                 element: <PrivateRoute> <CreateDonationRequest></CreateDonationRequest></PrivateRoute>
             },
 
+            {
+                path: 'update-donation-request/:id',
+                element: <PrivateRoute><UpdateDonationRequest></UpdateDonationRequest></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/donation-request-byId/${params.id}`)
+            },
         ]
 
     }
