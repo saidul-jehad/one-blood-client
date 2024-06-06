@@ -15,7 +15,7 @@ const useAxiosSecure = () => {
 
         // Do something before request is sent
         const token = localStorage.getItem("access-token")
-        console.log("token", token);
+        // console.log("token", token);
         config.headers.authorization = `Bearer ${token}`
         return config;
 

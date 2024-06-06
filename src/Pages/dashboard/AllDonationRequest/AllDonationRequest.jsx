@@ -5,8 +5,10 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import useVolunteer from '../../../Hooks/useVolunteer';
 
 const AllDonationRequest = () => {
+    const [isVolunteer] = useVolunteer()
     const [filter, setFilter] = useState("all")
     const [all_donation_request, refetch] = useAllDonationRequest(filter)
     const axiosSecure = useAxiosSecure()
@@ -78,7 +80,9 @@ const AllDonationRequest = () => {
                             <th>Donation status</th>
                             <th>Donor Action</th>
                             <th>Donor information</th>
-                            <th>Action</th>
+                            {
+                                !isVolunteer && <th>Action</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -103,11 +107,13 @@ const AllDonationRequest = () => {
                                 {/* <td>
                                     <FaEdit className='text-2xl bg-amber-600 hover:bg-amber-500 text-white p-1 rounded-md'></FaEdit>
                                 </td> */}
-                                <td className='flex gap-3'>
-                                    <Link to={`/dashboard/update-donation-request/${request._id}`}><FaEdit className='text-2xl bg-amber-600 hover:bg-amber-500 text-white p-1 rounded-md'></FaEdit></Link>
+                                {
+                                    !isVolunteer && <td className='flex gap-3'>
+                                        <Link to={`/dashboard/update-donation-request/${request._id}`}><FaEdit className='text-2xl bg-amber-600 hover:bg-amber-500 text-white p-1 rounded-md'></FaEdit></Link>
 
-                                    <button onClick={() => handleDelete(request._id)}><MdDeleteForever className='text-2xl bg-red-600 hover:bg-red-500 text-white p-1 rounded-md'></MdDeleteForever></button>
-                                </td>
+                                        <button onClick={() => handleDelete(request._id)}><MdDeleteForever className='text-2xl bg-red-600 hover:bg-red-500 text-white p-1 rounded-md'></MdDeleteForever></button>
+                                    </td>
+                                }
 
                             </tr>)
                         }
