@@ -13,6 +13,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 
 const Register = () => {
+    const [password, setPassword] = useState("")
     const [passwordError, setPasswordError] = useState("");
     const [selectedDistrict, setSelectedDistrict] = useState("");
     const { createUser, updateUserProfile, } = useAuth()
@@ -38,7 +39,7 @@ const Register = () => {
             console.log("Passwords do not match");
             return
         } else {
-            setPasswordError("");
+            // setPasswordError("");
 
             // upload image  in imgbb
             const imageFile = { image: data.avatar[0] }
@@ -54,7 +55,7 @@ const Register = () => {
                 // create user
                 createUser(data.email, data.password)
                     .then(() => {
-                        updateUserProfile(data.name, imageRes.data.display_url)
+                        updateUserProfile(data.name, imageRes.data.data.display_url)
                             .then(() => {
                                 // create user entry in the database 
                                 const userInfo = {
@@ -203,12 +204,15 @@ const Register = () => {
                                         <span className="label-text">Password</span>
                                     </label>
                                     <input {...register("password", {
-
                                         required: true,
                                         minLength: 6,
                                         maxLength: 20,
                                         pattern: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/
-                                    })} type="password" placeholder="password" className="input input-bordered" name="password" />
+                                    })}
+                                        onChange={(e) => {
+                                            setPassword(e.currentTarget.value)
+                                        }}
+                                        type="password" placeholder="password" className="input input-bordered" name="password" />
 
                                     {errors.password?.type === "required" && (
                                         <p role="alert" className='text-red-600'>Password is required</p>
@@ -232,6 +236,14 @@ const Register = () => {
                                     </label>
                                     <input
                                         {...register("confirm", { required: true })}
+                                        onChange={(e) => {
+                                            if (e.currentTarget.value !== password) {
+                                                setPasswordError("Passwords do not match")
+                                            }
+                                            else {
+                                                setPasswordError("")
+                                            }
+                                        }}
                                         type="password" placeholder="password" className="input input-bordered" name="confirm" />
 
                                     {errors.confirm?.type === "required" && (

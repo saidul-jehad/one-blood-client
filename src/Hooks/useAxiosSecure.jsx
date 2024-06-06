@@ -11,32 +11,32 @@ const useAxiosSecure = () => {
 
 
     // request interceptors to add  authorization header for  every secure call to the api
-    // axiosSecure.interceptors.request.use(function (config) {
+    axiosSecure.interceptors.request.use(function (config) {
 
-    //     // Do something before request is sent
-    //     // const token = localStorage.getItem("access-token")
-    //     // // console.log("requis tttt in", token);
-    //     // config.headers.authorization = `Bearer ${token}`
-    //     // return config;
+        // Do something before request is sent
+        const token = localStorage.getItem("access-token")
+        console.log("token", token);
+        config.headers.authorization = `Bearer ${token}`
+        return config;
 
-    // }, function (error) {
-    //     // Do something with request error
-    //     return Promise.reject(error);
-    // });
+    }, function (error) {
+        // Do something with request error
+        return Promise.reject(error);
+    });
 
-    // // intercepts 401 and 403 status
-    // axiosSecure.interceptors.response.use(function (response) {
-    //     return response;
-    // }, async (error) => {
-    //     // const status = error.response.status;
-    //     // console.log("status error interceptor", status);
-    //     // if (status === 401 || status === 403) {
-    //     //     setLoading(false)
-    //     //     await logout()
-    //     //     return
-    //     // }
-    //     // return Promise.reject(error)
-    // })
+    // intercepts 401 and 403 status
+    axiosSecure.interceptors.response.use(function (response) {
+        return response;
+    }, async (error) => {
+        const status = error.response.status;
+        console.log("status error interceptor", status);
+        if (status === 401 || status === 403) {
+            setLoading(false)
+            await logout()
+            return
+        }
+        return Promise.reject(error)
+    })
     return axiosSecure;
 };
 

@@ -4,10 +4,11 @@ import { MdDeleteForever } from 'react-icons/md';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const AllDonationRequest = () => {
-    const [all_donation_request, refetch] = useAllDonationRequest()
-    // console.log(all_donation_request);
+    const [filter, setFilter] = useState("all")
+    const [all_donation_request, refetch] = useAllDonationRequest(filter)
     const axiosSecure = useAxiosSecure()
 
 
@@ -46,14 +47,29 @@ const AllDonationRequest = () => {
         });
     }
 
+
+
     return (
         <div>
             <h3 className='text-3xl text-center'>All Blood Donation Request</h3>
 
+            <div className='text-center mt-5'>
+                <select onChange={(e) => {
+                    setFilter(e.currentTarget.value)
+                }} defaultValue={"all"} className="select select-accent w-full max-w-xs">
+                    <option disabled value={"all"}>Filter By Status</option>
+                    <option value={"all"}>All</option>
+                    <option value={"pending"}>Pending</option>
+                    <option value={"inprogress"}>Inprogress</option>
+                    <option value={"done"}>Done</option>
+                    <option value={"canceled"}>Canceled</option>
+                </select>
+            </div>
+
             <div className="overflow-x-auto mt-8">
-                <table className="table table-xs">
+                <table className="table table-sm">
                     <thead>
-                        <tr>
+                        <tr className='bg-orange-400'>
                             <th>#</th>
                             <th>Recipient Name</th>
                             <th>Recipient location</th>

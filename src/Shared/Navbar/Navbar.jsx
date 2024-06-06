@@ -8,7 +8,6 @@ const Navbar = () => {
     // const [isAdmin] = useAdmin()
     const navigate = useNavigate()
     // const [cart] = useCart()
-
     // logout user 
     const handleLogout = () => {
         logout()
@@ -47,7 +46,7 @@ const Navbar = () => {
                             navLinks
                         }
                         {
-                            user ? <li><NavLink to='/login'>Logout</NavLink></li> : <li><NavLink to='/login'>Login</NavLink></li>
+                            user ? <li><Link onClick={handleLogout}>Logout</Link></li> : <li><Link to='/login'>Login</Link></li>
                         }
 
                     </ul>

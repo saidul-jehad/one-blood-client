@@ -14,6 +14,8 @@ import AllDonationRequest from "../Pages/dashboard/AllDonationRequest/AllDonatio
 import DonationRequest from "../Pages/DonationRequest/DonationRequest";
 import DonationDetails from "../Pages/DonationDetails/DonationDetails";
 import UpdateDonationRequest from "../Pages/dashboard/UpdateDonationRequest/UpdateDonationRequest";
+import MyDonationRequest from "../Pages/dashboard/MyDonationRequest/MyDonationRequest";
+import AllUsers from "../Pages/dashboard/AllUsers/AllUsers";
 
 
 
@@ -59,6 +61,13 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><AllDonationRequest></AllDonationRequest></PrivateRoute>
             },
 
+
+            // admin and volant
+            {
+                path: "all-users",
+                element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
+            },
+
             // common
             {
                 path: 'profile',
@@ -68,6 +77,10 @@ const router = createBrowserRouter([
             {
                 path: 'create-donation-request',
                 element: <PrivateRoute> <CreateDonationRequest></CreateDonationRequest></PrivateRoute>
+            },
+            {
+                path: 'my-donation-requests',
+                element: <PrivateRoute> <MyDonationRequest></MyDonationRequest></PrivateRoute>
             },
 
             {
