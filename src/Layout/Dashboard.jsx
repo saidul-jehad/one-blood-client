@@ -8,16 +8,16 @@ import useAdmin from "../Hooks/useAdmin";
 import useVolunteer from "../Hooks/useVolunteer";
 
 const Dashboard = () => {
-    const [isAdmin] = useAdmin()
+    // const [isAdmin] = useAdmin()
     const [isVolunteer] = useVolunteer()
     const { user } = useAuth()
 
-    console.log("admin", isAdmin, "v", isVolunteer);
     // console.log(user);
     // TODO : get admin value from the database 
-    // const isAdmin = true
+    const isAdmin = false
     // const isVolunteer = true
     console.log(isAdmin);
+    console.log("admin", isAdmin, "v", isVolunteer);
 
     const commonLinks = <>
         <li>
@@ -164,8 +164,8 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className=" hidden md:flex">
-                <div className="w-64 min-h-screen bg-lime-500">
+            <div className="flex">
+                <div className="hidden  flex-col md:flex w-64 min-h-screen bg-lime-500">
                     <div className="flex justify-center items-center">
                         <img className="w-40 h-40 rounded-full  " src={user.photoURL} alt="" />
                     </div>
