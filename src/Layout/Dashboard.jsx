@@ -14,7 +14,7 @@ const Dashboard = () => {
 
     // console.log(user);
     // TODO : get admin value from the database 
-    const isAdmin = false
+    const isAdmin = true
     // const isVolunteer = true
     console.log(isAdmin);
     console.log("admin", isAdmin, "v", isVolunteer);

@@ -14,7 +14,7 @@ const DonorHome = () => {
     const { data: donation_request = [], refetch } = useQuery({
         queryKey: ['recent-donation-request'],
         queryFn: async () => {
-            const { data } = await axiosSecure.get("/recent-donation-request")
+            const { data } = await axiosSecure.get(`/recent-donation-request/${user.email}`)
             // console.log(data);
             return (data.slice(0, 3))
         },
@@ -79,7 +79,7 @@ const DonorHome = () => {
             </div>
 
 
-            <div>
+            <div className={`${donation_request.length === 0 && "hidden"}`}>
                 <h3 className='text-3xl text-center mt-6'>Recent Donation Request</h3>
 
                 <div className="overflow-x-auto mt-8">
@@ -130,6 +130,10 @@ const DonorHome = () => {
                         </tbody>
                     </table>
                 </div>
+
+                <Link to={'/dashboard/my-donation-requests'} className='text-center flex justify-center '>
+                    <button className='btn btn-accent mt-7'>View My All Donation Requests</button>
+                </Link>
             </div>
         </div>
     );

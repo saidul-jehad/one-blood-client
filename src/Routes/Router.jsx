@@ -17,6 +17,7 @@ import UpdateDonationRequest from "../Pages/dashboard/UpdateDonationRequest/Upda
 import MyDonationRequest from "../Pages/dashboard/MyDonationRequest/MyDonationRequest";
 import AllUsers from "../Pages/dashboard/AllUsers/AllUsers";
 import DonorHome from "../Pages/dashboard/DonorHome/DonorHome";
+import AdminHome from "../Pages/dashboard/AdminHome/AdminHome";
 
 
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         children: [
 
             // only admin]
+            {
+                path: 'admin-home',
+                element: <AdminHome></AdminHome>
+            },
             {
                 path: 'all-blood-donation-request',
                 element: <PrivateRoute><AllDonationRequest></AllDonationRequest></PrivateRoute>
