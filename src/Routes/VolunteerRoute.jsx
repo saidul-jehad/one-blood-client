@@ -1,23 +1,23 @@
 import { Navigate, useLocation } from "react-router-dom";
-import useAdmin from "../Hooks/useAdmin";
 import useAuth from "../Hooks/useAuth";
+import useVolunteer from "../Hooks/useVolunteer";
 
-const AdminRoute = ({ children }) => {
+const VolunteerRoute = ({children}) => {
     const { user, loading } = useAuth()
-    let [isAdmin, isAdminLoading] = useAdmin()
+    const [isVolunteer, isVolunteerLoading] = useVolunteer()
 
     const location = useLocation()
 
-    if (loading || isAdminLoading) {
+    if (loading || isVolunteerLoading) {
         return <div>
             <progress className="progress w-56"></progress>
             Loading........
         </div>
     }
-    if (user && isAdmin) {
+    if (user && isVolunteer) {
         return children;
     }
     return <Navigate to={'/'} state={{ from: location }} replace></Navigate>
 };
 
-export default AdminRoute;
+export default VolunteerRoute;

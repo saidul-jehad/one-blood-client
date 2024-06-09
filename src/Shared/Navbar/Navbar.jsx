@@ -1,13 +1,15 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import useAuth from '../../Hooks/useAuth';
+import useAdmin from '../../Hooks/useAdmin';
+import useVolunteer from '../../Hooks/useVolunteer';
 
 const Navbar = () => {
 
     const { user, logout } = useAuth()
-    // const [isAdmin] = useAdmin()
+    const [isAdmin] = useAdmin()
+    const [isVolunteer] = useVolunteer()
     const navigate = useNavigate()
-    // const [cart] = useCart()
     // logout user 
     const handleLogout = () => {
         logout()
@@ -23,14 +25,17 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/donation-requests'>Donation Requests</NavLink></li>
         <li><NavLink to='/blog'>Blog</NavLink></li>
-        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+        {/* <li><NavLink to='/dashboard'>Dashboard</NavLink></li> */}
 
-        {/* {
+        {
             user && isAdmin && <li><NavLink to='/dashboard/admin-home'>Dashboard</NavLink></li>
         }
         {
-            user && !isAdmin && <li><NavLink to='/dashboard/user-home'>Dashboard</NavLink></li>
-        } */}
+            !isAdmin && !isVolunteer && user && <li><NavLink to='/dashboard/user-home'>Dashboard</NavLink></li>
+        }
+        {
+            user && isVolunteer && <li><NavLink to='/dashboard/volunteer-home'>Dashboard</NavLink></li>
+        }
     </>
 
 

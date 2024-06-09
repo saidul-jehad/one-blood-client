@@ -18,6 +18,12 @@ import MyDonationRequest from "../Pages/dashboard/MyDonationRequest/MyDonationRe
 import AllUsers from "../Pages/dashboard/AllUsers/AllUsers";
 import DonorHome from "../Pages/dashboard/DonorHome/DonorHome";
 import AdminHome from "../Pages/dashboard/AdminHome/AdminHome";
+import AdminRoute from "./AdminRoute";
+import AdminOrVolunteerRoute from "./AdminOrVolunteerRoute";
+import VolunteerRoute from "./VolunteerRoute";
+import VolunteerHome from "../Pages/dashboard/VolunteerHome/VolunteerHome";
+import ContentManagement from "../Pages/dashboard/ContentManagement/ContentManagement";
+import AddBlog from "../Pages/dashboard/ContentManagement/AddBlog/AddBlog";
 
 
 
@@ -59,19 +65,34 @@ const router = createBrowserRouter([
 
             // only admin]
             {
-                path: 'admin-home',
-                element: <AdminHome></AdminHome>
+                path: '/dashboard/admin-home',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
             },
             {
-                path: 'all-blood-donation-request',
-                element: <PrivateRoute><AllDonationRequest></AllDonationRequest></PrivateRoute>
+                path: '/dashboard/content-management',
+                element: <AdminOrVolunteerRoute> <ContentManagement></ContentManagement></AdminOrVolunteerRoute>
             },
-
+            {
+                path: 'content-management/add-blog',
+                element: <AdminOrVolunteerRoute> <AddBlog></AddBlog></AdminOrVolunteerRoute>
+            },
 
             // admin and volant
             {
+                path: 'all-blood-donation-request',
+                element: <AdminOrVolunteerRoute><AllDonationRequest></AllDonationRequest></AdminOrVolunteerRoute>
+            },
+
+
+            {
                 path: "all-users",
-                element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+
+            // Volunteer
+            {
+                path: '/dashboard/volunteer-home',
+                element: <VolunteerRoute><VolunteerHome></VolunteerHome></VolunteerRoute>
             },
 
             // common
@@ -97,7 +118,7 @@ const router = createBrowserRouter([
             // user
             {
                 path: '/dashboard/user-home',
-                element: <DonorHome></DonorHome>
+                element: <PrivateRoute><DonorHome></DonorHome></PrivateRoute>
             },
         ]
 

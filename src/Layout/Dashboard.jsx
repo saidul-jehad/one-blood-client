@@ -1,23 +1,23 @@
 import { CgProfile } from "react-icons/cg";
-import {  FaEnvelope, FaHome,  FaListAlt, FaUsers, } from "react-icons/fa";
+import { FaEnvelope, FaHome, FaListAlt, FaUsers, } from "react-icons/fa";
 import { FaCableCar } from "react-icons/fa6";
 import { MdManageAccounts, MdRequestPage } from "react-icons/md";
-import {  NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import useAdmin from "../Hooks/useAdmin";
 import useVolunteer from "../Hooks/useVolunteer";
 
 const Dashboard = () => {
-    // const [isAdmin] = useAdmin()
+    const [isAdmin] = useAdmin()
     const [isVolunteer] = useVolunteer()
     const { user } = useAuth()
 
     // console.log(user);
     // TODO : get admin value from the database 
-    const isAdmin = true
-    // const isVolunteer = true
-    console.log(isAdmin);
-    console.log("admin", isAdmin, "v", isVolunteer);
+    // const isAdmin = true
+    // const isVolunteer = false
+    // console.log(isAdmin);
+    // console.log("admin", isAdmin, "v", isVolunteer);
 
     const commonLinks = <>
         <li>
@@ -43,12 +43,12 @@ const Dashboard = () => {
     </>
 
     const adminLinks = <>
-        <li>
+        {/* <li>
             <NavLink to={"/dashboard/admin-home"}>
                 <FaHome> </FaHome>
                 Admin Home
             </NavLink>
-        </li>
+        </li> */}
 
         <li>
             <NavLink to={"/dashboard/all-users"}>
@@ -76,6 +76,14 @@ const Dashboard = () => {
     </>
 
     const volunteerLinks = <>
+
+        {/* <li>
+            <NavLink to={"/dashboard/volunteer-home"}>
+                <MdManageAccounts></MdManageAccounts>
+                Volunteer Home
+            </NavLink>
+        </li> */}
+
         <li>
             <NavLink to={"/dashboard/content-management"}>
                 <MdManageAccounts></MdManageAccounts>
@@ -95,13 +103,41 @@ const Dashboard = () => {
         }
     </>
 
+    const homeLinks = <>
+        {
+            (isAdmin === isVolunteer) && <li>
+                <NavLink to={"/dashboard/user-home"}>
+                    <FaHome> </FaHome>
+                    User Home
+                </NavLink>
+            </li>
+        }
+
+        {
+            isAdmin && <li>
+                <NavLink to={"/dashboard/admin-home"}>
+                    <FaHome> </FaHome>
+                    Admin Home
+                </NavLink>
+            </li>
+        }
+        {
+            isVolunteer && <li>
+                <NavLink to={"/dashboard/volunteer-home"}>
+                    <FaHome> </FaHome>
+                    Volunteer Home
+                </NavLink>
+            </li>
+        }
+    </>
+
     const userLinks = <>
-        <li>
+        {/* <li>
             <NavLink to={"/dashboard/user-home"}>
                 <FaHome> </FaHome>
                 User Home
             </NavLink>
-        </li>
+        </li> */}
         {
             commonLinks
         }
@@ -111,10 +147,13 @@ const Dashboard = () => {
     const dashboardLinks = <>
         {
             isAdmin ? <>
+                {homeLinks}
                 {adminLinks}
             </> : isVolunteer ? <>
+                {homeLinks}
                 {volunteerLinks}
             </> : <>
+                {homeLinks}
                 {userLinks}
             </>
 
@@ -165,7 +204,7 @@ const Dashboard = () => {
             </div>
 
             <div className="flex">
-                <div className="hidden  flex-col md:flex w-64 min-h-screen bg-lime-500">
+                <div className="hidden flex-col md:flex w-64 min-h-screen bg-lime-500">
                     <div className="flex justify-center items-center">
                         <img className="w-40 h-40 rounded-full  " src={user.photoURL} alt="" />
                     </div>

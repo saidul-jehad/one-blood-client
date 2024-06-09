@@ -3,9 +3,7 @@ import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
-
-const AdminHome = () => {
-
+const VolunteerHome = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
@@ -57,11 +55,11 @@ const AdminHome = () => {
                     {/* <div className="stat-desc">↘︎ 90 (14%)</div> */}
                 </div>
 
-           
+
 
             </div>
         </div>
     );
 };
 
-export default AdminHome;
+export default VolunteerHome;

@@ -3,8 +3,6 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useAllDonationRequest = (filter) => {
     const axiosSecure = useAxiosSecure()
-    // console.log(filter);
-
     const {
         data: all_donation_request = [],
         refetch

@@ -3,7 +3,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 
-const DonationDetails = () => {
+    const DonationDetails = () => {
     const donation_request = useLoaderData()
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()

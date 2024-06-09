@@ -1,10 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAllUsers from "../../../Hooks/useAllUsers";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useState } from "react";
 
 const AllUsers = () => {
-    const [all_users, refetch] = useAllUsers()
-    // console.log(all_users);
+    const [filter, setFilter] = useState("all")
+    const [all_users, refetch] = useAllUsers(filter)
     const axiosSecure = useAxiosSecure()
 
 
@@ -32,6 +33,19 @@ const AllUsers = () => {
     return (
         <div>
             <h3 className="text-3xl text-center">All Users</h3>
+
+
+            <div className='text-center mt-5'>
+                <select onChange={(e) => {
+                    setFilter(e.currentTarget.value)
+                }} defaultValue={"all"} className="select select-accent w-full max-w-xs">
+                    <option disabled value={"all"}>Filter By Status</option>
+                    <option value={"all"}>All</option>
+                    <option value={"active"}>Active</option>
+                    <option value={"blocked"}>Blocked</option>
+                </select>
+            </div>
+
 
             <div className="overflow-x-auto mt-10">
                 <table className="table table-sm">
