@@ -1,6 +1,5 @@
 import { CgProfile } from "react-icons/cg";
-import { FaEnvelope, FaHome, FaListAlt, FaUsers, } from "react-icons/fa";
-import { FaCableCar } from "react-icons/fa6";
+import { FaHome, FaListAlt, FaUsers, } from "react-icons/fa";
 import { MdManageAccounts, MdRequestPage } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
@@ -35,7 +34,7 @@ const Dashboard = () => {
 
         </li>
         <li>
-            <NavLink to={"/dashboard/profile"}>
+            <NavLink to={`/dashboard/profile/${user?.email}`}>
                 <CgProfile></CgProfile>
                 Profile
             </NavLink>
@@ -185,20 +184,6 @@ const Dashboard = () => {
                                 Home
                             </NavLink>
                         </li>
-
-
-                        <li>
-                            <NavLink to={"/order/salads"}>
-                                <FaCableCar>   </FaCableCar>
-                                Menu
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={"/order/contact"}>
-                                <FaEnvelope></FaEnvelope>
-                                Contact
-                            </NavLink>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -220,20 +205,6 @@ const Dashboard = () => {
                             <NavLink to={"/"}>
                                 <FaHome> </FaHome>
                                 Home
-                            </NavLink>
-                        </li>
-
-
-                        <li>
-                            <NavLink to={"/order/salads"}>
-                                <FaCableCar>   </FaCableCar>
-                                Menu
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={"/order/contact"}>
-                                <FaEnvelope></FaEnvelope>
-                                Contact
                             </NavLink>
                         </li>
 

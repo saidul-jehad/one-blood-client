@@ -76,7 +76,7 @@ const ContentManagement = () => {
                 </div>
 
                 {
-                    blogs.map(blog => <div key={blog._id} className="flex p-5 rounded-lg bg-slate-100 flex-col lg:flex-row gap-6 bg-base-100 shadow-xl mt-7">
+                    blogs.map(blog => <div key={blog._id} className="flex p-5 rounded-lg bg-slate-100 flex-col lg:flex-row gap-6 shadow-xl mt-7">
                         <figure><img className="w-96" src={blog.thumbnail} alt="Shoes" /></figure>
                         <div className="">
                             <h2 className="card-title">

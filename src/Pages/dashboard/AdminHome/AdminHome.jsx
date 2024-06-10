@@ -1,7 +1,8 @@
-import { FaBook, FaUsers } from 'react-icons/fa';
+import { FaBook, FaListAlt, FaUsers } from 'react-icons/fa';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { Fa42Group } from 'react-icons/fa6';
 
 
 const AdminHome = () => {
@@ -28,7 +29,7 @@ const AdminHome = () => {
             </h2>
 
 
-            <div className="stats shadow">
+            <div className="stats shadow mt-7">
 
                 <div className="stat">
                     <div className="stat-figure text-secondary">
@@ -41,16 +42,7 @@ const AdminHome = () => {
 
                 <div className="stat">
                     <div className="stat-figure text-secondary">
-                        <FaUsers className="text-3xl"></FaUsers>
-                    </div>
-                    <div className="stat-title"> Users</div>
-                    <div className="stat-value">{"15"}</div>
-                    <div className="stat-desc">↗︎ 400 (22%)</div>
-                </div>
-
-                <div className="stat">
-                    <div className="stat-figure text-secondary">
-                        <FaBook className="text-3xl"></FaBook>
+                        <FaListAlt className="text-3xl"></FaListAlt>
                     </div>
                     <div className="stat-title">Total Blood Donation request</div>
                     <div className="stat-value">{stats.requests}</div>

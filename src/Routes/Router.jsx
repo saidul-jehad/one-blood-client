@@ -24,6 +24,9 @@ import VolunteerRoute from "./VolunteerRoute";
 import VolunteerHome from "../Pages/dashboard/VolunteerHome/VolunteerHome";
 import ContentManagement from "../Pages/dashboard/ContentManagement/ContentManagement";
 import AddBlog from "../Pages/dashboard/ContentManagement/AddBlog/AddBlog";
+import Blogs from "../Pages/Blogs/Blogs";
+import BlogDetails from "../Pages/Blogs/BlogDetails";
+import Search from "../Pages/Search/Search";
 
 
 
@@ -35,6 +38,11 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+
+            {
+                path: '/search',
+                element: <Search></Search>
             },
             {
                 path: '/login',
@@ -52,6 +60,15 @@ const router = createBrowserRouter([
                 path: '/donation-details/:id',
                 element: <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/donation-request/${params.id}`)
+            },
+            {
+                path: "/blogs",
+                element: <Blogs></Blogs>
+            },
+            {
+                path: '/blog-details/:id',
+                element: <BlogDetails></BlogDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`)
             },
 
         ]
@@ -97,8 +114,9 @@ const router = createBrowserRouter([
 
             // common
             {
-                path: 'profile',
-                element: <PrivateRoute> <Profile></Profile></PrivateRoute>
+                path: 'profile/:email',
+                element: <PrivateRoute> <Profile></Profile></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/user/${params.email}`)
             },
 
             {

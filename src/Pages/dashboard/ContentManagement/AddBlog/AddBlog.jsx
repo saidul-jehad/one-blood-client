@@ -24,7 +24,6 @@ const AddBlog = () => {
         register,
         handleSubmit,
         formState: { errors },
-        reset
     } = useForm()
 
 
@@ -106,10 +105,7 @@ const AddBlog = () => {
                             onChange={newContent => { setContent(newContent); }}
                         />
 
-                        {/* 
-                        <div dangerouslySetInnerHTML={{ __html: content }}>
-
-                        </div> */}
+                       
 
                         <div className="form-control">
                             <input className="btn btn-outline text-white bg-[#D1A054]" type="submit" value="Create a Blog" />

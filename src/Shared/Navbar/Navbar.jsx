@@ -24,7 +24,7 @@ const Navbar = () => {
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/donation-requests'>Donation Requests</NavLink></li>
-        <li><NavLink to='/blog'>Blog</NavLink></li>
+        <li><NavLink to='/blogs'>Blog</NavLink></li>
         {/* <li><NavLink to='/dashboard'>Dashboard</NavLink></li> */}
 
         {
@@ -56,7 +56,7 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"> <img className="h-8 w-7 rounded-sm hidden lg:flex" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoHA-5zG2KnleyJfDiEIVoQL84WynX3ea9jEZKeD0tA&s" alt="" />OneBlood</a>
+                <a className="btn btn-ghost text-xl"> <img className="h-8 w-7 rounded-sm hidden lg:flex" src="https://i1.sndcdn.com/artworks-000509713428-9fr9vk-t500x500.jpg" alt="" />OneBlood</a>
             </div>
 
             <div className="lg:navbar-center hidden lg:flex">
