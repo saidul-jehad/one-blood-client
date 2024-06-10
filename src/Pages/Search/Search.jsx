@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { districtsAndUpazilas } from '../../../public/DistrictAndUpazilas'
 import { useForm } from 'react-hook-form';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
-import { Link } from 'react-router-dom';
 
 
 const Search = () => {
@@ -14,16 +13,16 @@ const Search = () => {
         register,
         handleSubmit,
         formState: { errors },
-        reset
+        // reset
     } = useForm()
 
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
 
         axiosPublic.get(`/search-user/${data.bloodGroup}?district=${data.district}&upazila=${data.upazila}`)
             .then(res => {
                 setSearchResult(res.data)
-                console.log(res.data)
+                // console.log(res.data)
             })
 
 

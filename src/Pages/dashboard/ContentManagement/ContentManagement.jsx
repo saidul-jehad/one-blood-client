@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAdmin from "../../../Hooks/useAdmin";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ContentManagement = () => {
     const [filter, setFilter] = useState("all")
@@ -21,7 +22,7 @@ const ContentManagement = () => {
     const handleUpdateStatus = (status, id) => {
         axiosSecure.patch(`/update-blog-status/${id}`, { status })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     refetch()
                 }
@@ -56,6 +57,9 @@ const ContentManagement = () => {
 
     return (
         <div className="">
+
+            <Helmet><title>OneBlood | Content Managements</title></Helmet>
+
             <div className="flex justify-end">
                 <Link to={'/dashboard/content-management/add-blog'}> <button className="btn btn-accent btn-outline">Add Blog</button></Link>
             </div>

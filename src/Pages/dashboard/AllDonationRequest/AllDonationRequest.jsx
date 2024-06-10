@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import useVolunteer from '../../../Hooks/useVolunteer';
+import { Helmet } from 'react-helmet-async';
 
 const AllDonationRequest = () => {
     const [isVolunteer] = useVolunteer()
@@ -54,6 +55,7 @@ const AllDonationRequest = () => {
     return (
         <div>
             <h3 className='text-3xl text-center'>All Blood Donation Request</h3>
+            <Helmet><title>OneBlood | All Donation Request</title></Helmet>
 
             <div className='text-center mt-5'>
                 <select onChange={(e) => {

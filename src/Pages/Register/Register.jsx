@@ -13,6 +13,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 
 const Register = () => {
+    const [registerError, setRegisterError] = useState('')
     const [password, setPassword] = useState("")
     const [passwordError, setPasswordError] = useState("");
     const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -49,7 +50,7 @@ const Register = () => {
                 }
             });
 
-            console.log(imageRes.data);
+            // console.log(imageRes.data);
             if (imageRes.data.success) {
 
                 // create user
@@ -81,9 +82,12 @@ const Register = () => {
                                         }
                                     })
                             })
-                            .catch(err => console.log(err))
+                        // .catch(err => console.log(err))
                     })
-                    .catch(err => console.log(err))
+                    .catch(error => {
+                        setRegisterError(error.message)
+                        // console.log(error.message);
+                    })
 
             }
         }
@@ -94,7 +98,7 @@ const Register = () => {
 
     return (
         <>
-            <Helmet><title>OneBlood || Sign Up</title></Helmet>
+            <Helmet><title>OneBlood | Sign Up</title></Helmet>
             <div className="hero min-h-screen bg-base-200 pt-20">
                 <div className="hero-content flex-col lg:flex-row md:w-3/4 ">
 
@@ -255,6 +259,10 @@ const Register = () => {
 
                                 </div>
                             </div>
+
+                            {
+                                registerError && <p className="text-red-500 font-medium pl-1 text-xl ">{registerError.slice(22, 42)}</p>
+                            }
 
                             <div className="form-control">
                                 <input className="btn btn-outline text-white bg-[#D1A054]" type="submit" value="Sign Up" />

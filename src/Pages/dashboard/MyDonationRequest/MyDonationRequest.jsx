@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react'
 import useMyDonationRequest from '../../../Hooks/useMyDonationRequest';
 import useAuth from '../../../Hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const MyDonationRequest = () => {
     const { user } = useAuth()
@@ -69,6 +70,7 @@ const MyDonationRequest = () => {
                     <option value={"canceled"}>Canceled</option>
                 </select>
             </div>
+            <Helmet><title>OneBlood | My Donation Request</title></Helmet>
 
             <div className="overflow-x-auto mt-8">
                 <table className="table table-sm">

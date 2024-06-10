@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             {
                 path: '/donation-details/:id',
                 element: <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/donation-request/${params.id}`)
+                loader: ({ params }) => fetch(`https://one-blood-server.vercel.app/donation-request/${params.id}`)
             },
             {
                 path: "/blogs",
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
             {
                 path: '/blog-details/:id',
                 element: <BlogDetails></BlogDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: ({ params }) => fetch(`https://one-blood-server.vercel.app/blogs/${params.id}`)
             },
 
         ]
@@ -116,7 +116,7 @@ const router = createBrowserRouter([
             {
                 path: 'profile/:email',
                 element: <PrivateRoute> <Profile></Profile></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/user/${params.email}`)
+                loader: ({ params }) => fetch(`https://one-blood-server.vercel.app/user/${params.email}`)
             },
 
             {
@@ -131,7 +131,7 @@ const router = createBrowserRouter([
             {
                 path: 'update-donation-request/:id',
                 element: <PrivateRoute><UpdateDonationRequest></UpdateDonationRequest></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/donation-request-byId/${params.id}`)
+                loader: ({ params }) => fetch(`https://one-blood-server.vercel.app/donation-request-byId/${params.id}`)
             },
             // user
             {

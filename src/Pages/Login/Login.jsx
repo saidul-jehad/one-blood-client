@@ -2,10 +2,11 @@ import useAuth from '../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 
 const Login = () => {
-
+    const [loginError, setLoginError] = useState('')
     const { login } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
@@ -27,13 +28,16 @@ const Login = () => {
                 toast.success("Login Success")
                 navigate(from, { replace: true })
             })
-            .catch(err => console.log(err))
+            .catch(() => {
+                setLoginError('Email and Password dose not match')
+            })
+
     }
 
 
     return (
         <>
-            <Helmet><title>Bistro Boss || Login</title></Helmet>
+            <Helmet><title>Bistro Boss | Login</title></Helmet>
 
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row md:w-3/4">
@@ -59,6 +63,10 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
+
+                            {
+                                loginError && <p className="text-red-500 font-medium pl-1 text-lg ">{loginError}</p>
+                            }
 
                             <div className="form-control mt-2">
                                 <input className="btn btn-outline text-white bg-[#D1A054]" type="submit" value="Login" />

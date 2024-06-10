@@ -1,8 +1,7 @@
-import { FaBook, FaListAlt, FaUsers } from 'react-icons/fa';
+import { FaListAlt, FaUsers } from 'react-icons/fa';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import { Fa42Group } from 'react-icons/fa6';
 
 
 const AdminHome = () => {
@@ -49,7 +48,7 @@ const AdminHome = () => {
                     {/* <div className="stat-desc">↘︎ 90 (14%)</div> */}
                 </div>
 
-           
+
 
             </div>
         </div>

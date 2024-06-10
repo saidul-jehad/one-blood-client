@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const DonationRequest = () => {
@@ -16,10 +17,12 @@ const DonationRequest = () => {
         }
     })
 
-    console.log(donation_request);
+    // console.log(donation_request);
 
     return (
         <div className="pt-24">
+            <Helmet><title>OneBlood | Donation Request</title></Helmet>
+
             <h3 className="text-3xl text-center"> Donation Request</h3>
 
             <div className="overflow-x-auto mt-9">

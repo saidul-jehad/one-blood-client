@@ -5,6 +5,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import useAdmin from "../Hooks/useAdmin";
 import useVolunteer from "../Hooks/useVolunteer";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin()
@@ -164,6 +165,8 @@ const Dashboard = () => {
 
     return (
         <div className="">
+            <Helmet><title>OneBlood | Dashboard</title></Helmet>
+
             <div className="navbar-start flex md:hidden">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">

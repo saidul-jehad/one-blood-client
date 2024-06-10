@@ -36,7 +36,7 @@ const DonationDetails = () => {
                     navigate('/donation-requests')
                 }
             })
-        console.log("f=donate");
+
     }
 
 

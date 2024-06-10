@@ -18,7 +18,7 @@ const Navbar = () => {
                 // console.log(user);
                 navigate('/login')
             })
-            .catch(error => console.log(error))
+            // .catch(error => console.log(error))
     }
 
     const navLinks = <>

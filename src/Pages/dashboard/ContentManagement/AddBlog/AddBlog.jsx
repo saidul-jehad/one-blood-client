@@ -38,7 +38,7 @@ const AddBlog = () => {
         });
 
 
-        console.log(imageRes.data);
+        // console.log(imageRes.data);
         if (imageRes.data.success) {
             const blog = {
                 title: data.title,
@@ -51,7 +51,7 @@ const AddBlog = () => {
             // now send database
             axiosSecure.post('/add-blog', blog)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if (res.data.insertedId) {
                         toast.success('Blog Add Success')
                         navigate('/dashboard/content-management')

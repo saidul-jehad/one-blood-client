@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useAllUsers from "../../../Hooks/useAllUsers";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
     const [filter, setFilter] = useState("all")
@@ -33,6 +34,7 @@ const AllUsers = () => {
     return (
         <div>
             <h3 className="text-3xl text-center">All Users</h3>
+            <Helmet><title>OneBlood | All Users</title></Helmet>
 
 
             <div className='text-center mt-5'>

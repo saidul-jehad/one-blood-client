@@ -56,7 +56,7 @@ const DonorHome = () => {
     }
 
 
-    console.log(donation_request);
+    // console.log(donation_request);
     return (
         <div>
 

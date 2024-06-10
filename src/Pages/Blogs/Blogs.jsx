@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Blogs = () => {
     const axiosPublic = useAxiosPublic()
@@ -15,6 +16,8 @@ const Blogs = () => {
 
     return (
         <div className="pt-28">
+            <Helmet><title>OneBlood || Blog</title></Helmet>
+
             <div className="">
                 <h3 className="text-3xl text-center">All Blogs</h3>
 

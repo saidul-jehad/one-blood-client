@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 
 import { useForm } from "react-hook-form"
 import useAuth from '../../../Hooks/useAuth';
@@ -8,6 +7,7 @@ import ReactDatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -81,6 +81,8 @@ const CreateDonationRequest = () => {
 
     return (
         <div className="hero min-h-screen">
+            <Helmet><title>OneBlood | Create Donation Request  </title></Helmet>
+
             <div className="hero-content p-0 flex-col lg:flex-row md:w-3/4 ">
 
                 <div className="card shrink-0 w-full max-w-sm md:max-w-xl shadow-2xl bg-base-100">

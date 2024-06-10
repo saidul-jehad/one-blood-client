@@ -1,12 +1,10 @@
 
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { districtsAndUpazilas } from '../../../../public/DistrictAndUpazilas'
-import useAuth from '../../../Hooks/useAuth';
-import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 
@@ -15,13 +13,11 @@ const Profile = () => {
     const [isDisable, setIsDisable] = useState(true)
 
     const [selectedDistrict, setSelectedDistrict] = useState("");
-    const navigae = useNavigate()
     const axiosSecure = useAxiosSecure()
     const {
         register,
         handleSubmit,
         formState: { errors },
-        reset
     } = useForm()
 
 
@@ -50,6 +46,8 @@ const Profile = () => {
 
     return (
         <div className="flex justify-center flex-col items-center">
+            <Helmet><title>OneBlood | Profile</title></Helmet>
+
             <div className="hero min-h-screen bg-base-200s">
                 <div className="hero-content flex-col lg:flex-row md:w-3/4 ">
 
